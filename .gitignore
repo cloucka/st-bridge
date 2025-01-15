@@ -37,3 +37,4 @@ bin/**
 !build/.gitkeep
 !bin/.gitkeep
 source/st-bridge.qbs.user
+source/build/**
