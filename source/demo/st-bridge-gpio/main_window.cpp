@@ -347,6 +347,7 @@ void MainWindow::help()
 
 bool MainWindow::changeConfig()
 {
+  qDebug() << "Change Config";
   Brg_GpioConfT confs[4];
   for (int i : {0, 1, 2, 3}) {
     confs[i].Mode = m_gpioWidget[i]->getGpioMode();
@@ -369,6 +370,7 @@ bool MainWindow::changeConfig()
 
 bool MainWindow::changeValue(Brg_GpioMaskT mask)
 {
+  qDebug() << "Change Value";
   Brg_GpioValT gpioValues[4];
   uint8_t errorMask;
 
