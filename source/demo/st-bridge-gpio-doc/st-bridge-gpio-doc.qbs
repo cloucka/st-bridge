@@ -62,7 +62,7 @@ Product {
     qbs.install: true
   }
 
-  Rule {
+  /*Rule {
     inputs: "qhcp"
     auxiliaryInputs: ["qch"]
     Artifact {
@@ -78,5 +78,5 @@ Product {
       cmd.highlight = 'filegen';
       return cmd;
     }
-  }
+  }*/
 }
