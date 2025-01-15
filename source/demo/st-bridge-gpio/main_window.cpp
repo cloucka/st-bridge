@@ -181,6 +181,7 @@ void MainWindow::createToolBars()
 void MainWindow::createStatusBar()
 {
   statusBar()->showMessage("Ready");
+  qDebug() << "Ready";
 }
 
 void MainWindow::createDockWindows()
@@ -208,9 +209,11 @@ void MainWindow::start()
   if (ret == BRG_NO_ERR) {
     readData();
     statusBar()->showMessage(tr("Device opened successfully"));
+    qDebug() << "Device opened successfully";
   } else {
     readData();
     statusBar()->showMessage(tr("Device open failed with error: %1").arg(ret));
+    qDebug() << "Device open failed";
   }
 }
 
@@ -219,6 +222,7 @@ void MainWindow::stop()
   m_brg->CloseStlink();
   readData();
   statusBar()->showMessage(tr("Device closed."));
+  qDebug() << "Device closed";
 }
 
 void MainWindow::refresh()
@@ -357,6 +361,7 @@ bool MainWindow::changeConfig()
   auto ret = m_brg->InitGPIO(&init);
   if (ret != BRG_NO_ERR) {
     statusBar()->showMessage(tr("GPIO init failed with error: %1").arg(ret));
+    qDebug() << "GPIO init failed";
     return false;
   }
   return true;
@@ -374,6 +379,7 @@ bool MainWindow::changeValue(Brg_GpioMaskT mask)
   auto ret = m_brg->SetResetGPIO(mask, gpioValues, &errorMask);
   if (ret != BRG_NO_ERR) {
     statusBar()->showMessage(tr("GPIO write failed with error: %1").arg(ret));
+    qDebug() << "GPIO write failed";
     return false;
   } else {
     return readValues(); // read back the values and update the widgets
@@ -388,6 +394,7 @@ bool MainWindow::readValues()
   auto ret = m_brg->ReadGPIO(BRG_GPIO_ALL, gpioValues, &errorMask);
   if (ret != BRG_NO_ERR) {
     statusBar()->showMessage(tr("GPIO read failed with error: %1").arg(ret));
+    qDebug() << "GPIO read failed";
     return false;
   } else {
     for (int i : {0, 1, 2, 3}) {
